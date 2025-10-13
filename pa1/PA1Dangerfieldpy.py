@@ -12,7 +12,7 @@ import math
 num1 = int(input("Enter a Numerator: "))
 den1 = int(input("Enter a Denominator: "))
 
-    #Validate den1
+#Validate den1 input
 if den1 == 0:
         print("denominator cannot be zero.")
 else:
