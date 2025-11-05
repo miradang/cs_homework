@@ -1,20 +1,26 @@
 import random
 import math
-
+#i probaly dont need math but who the fuck knows with python
 
 print("Number Guessing Game. Choose a upper and lower bound.")  
 
 low = int(input("Lower Bound: "))
 high = int(input("Higher Bound: "))
 
+#input san
+if high < low:
+    print("Upper Bound is lower than Lower bound")
+    low = int(input("Lower Bound: "))
+    high = int(input("Higher Bound: "))
+
+
 #so i dont make a nested list like li_int = list(range(low, high + 1))
 li_int = [i for i in range(low, high + 1)]
 
 ran_num = random.randrange(low, high)
-
-guess = 0
 guess_total = 0
 
+#binary search function that will be the death of me. whats a index and whats a value, fuck you sometimes its both
 def binary_search(lst, target):
     high = len(lst) - 1
     low = 0
