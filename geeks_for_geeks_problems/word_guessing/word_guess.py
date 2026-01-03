@@ -21,7 +21,9 @@ print(word_guess)
 
 guess_char = input("Guess a character: ")
 
-while turns > 0:
+watchdog = int(1)
+
+while turns > 0 and watchdog > 0:
     
     if guess_char in word_guess:
         correct += guess_char
@@ -30,9 +32,16 @@ while turns > 0:
         print(f"you have guessed incorrectly {incorrect} and {correct} correctly")
         guess_char = ""
         guess_char = input("Guess a character: ")
+
+        if sorted(correct) == sorted(word_guess):
+            print("You have won")
+            watchdog -= 999
+            turns -= 999
+            break  
     
     elif sorted(correct) == sorted(word_guess):
         print("You have won")
+        watchdog -= 1
         turns -= 100
         break
 
