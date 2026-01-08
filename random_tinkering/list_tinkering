@@ -1,0 +1,27 @@
+#working with lists
+cars = ['x']
+
+while cars[-1] != 'Done':
+    cars.append(input("Input a name of a car. Enter Done when finished: "))
+        
+del cars[0]
+del cars[-1]
+
+print(f'Printing the cars list.\n{cars}') 
+
+print(f'Printing the last index which shouldnt be -1.\n{cars[-1]}')
+
+cars.insert(0, 'monster')
+
+print(cars)
+
+cars2 = cars
+
+while len(cars2) > 3:
+    del cars[-1]
+print(cars2)
+
+cars.sort()
+print(cars)
+
+

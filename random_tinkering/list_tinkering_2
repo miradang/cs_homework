@@ -1,0 +1,44 @@
+names = ['bob', 'alice', 'dave', 'george']
+
+for names in names:
+    print(f"{names.title()} is a great name!")
+
+even_numbers = list(range(2,21,2))
+print(f"Even Numbers\n{even_numbers}\n")
+
+
+squares = []
+
+for value in range(1,11):
+    square = value ** 2
+    squares.append(square)
+print(f"Squares of 1-10\n{squares}\n")
+
+squares2 = [value**2 for value in range(1,11)]
+print(squares2)
+
+large_num = [value for value in range(1,10000)]
+print(sum(large_num))
+
+large_num_list = list(range(1, 10000))
+print(sum(large_num_list))
+
+print(large_num_list[-1])
+
+print(large_num_list[52:60])
+
+print(names[:1])
+for names in names[:1]:
+    print(names.title())
+    #why on earth is it just printing G? look into this it should be the last 2 strings
+
+names5 = names[:]
+print(names5)
+#wut its printing g instead of copying the list
+
+squares3 = squares[:]
+print(squares3)
+#probaly some weird int vs string thing.
+
+
+
