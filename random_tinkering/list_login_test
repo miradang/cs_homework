@@ -1,0 +1,30 @@
+user_list = ['admin', 'bob', 'dave', 'john', 'frank']
+passwords = ['admin', 'bob1', 'dave1', 'john1', 'frank1']
+
+while True:
+    user_login = input("Enter your username:")
+    
+    if user_login in user_list:
+        user_login_index = user_list.index(user_login)
+        user_pass_index = ()
+        print(f"Hello {user_login}. Please enter your password: ")
+        user_pass = input()
+
+        if user_pass in passwords:
+            user_pass_index = passwords.index(user_pass)
+
+            if user_pass in passwords and user_login_index == user_pass_index:
+                print(f"Login Successful. Welcome {user_login}\n")
+                current_user = user_login
+                break        
+        else:
+            print("That Password is incorrect")          
+    else:
+        user_login = input("Please enter a valid username: ")
+
+quit = 'n'
+while add_user_b != quit:
+    add_user_b = input(f"{current_user} would you like to add a new user? y or n: ")
+
+
+print(askjdbas)
