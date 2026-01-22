@@ -1,5 +1,6 @@
 user_list = ['admin', 'bob', 'dave', 'john', 'frank']
 passwords = ['admin', 'bob1', 'dave1', 'john1', 'frank1']
+quit, add_user_b, add_user_n, add_user_p, add_user_a = 'n','','','', ''
 
 while True:
     user_login = input("Enter your username:")
@@ -22,9 +23,18 @@ while True:
     else:
         user_login = input("Please enter a valid username: ")
 
-quit = 'n'
-while add_user_b != quit:
-    add_user_b = input(f"{current_user} would you like to add a new user? y or n: ")
+if current_user == 'admin':
+    while add_user_a != quit:
+        add_user_a = input(f"{current_user} would you like to add a new user? y or n: ")
+        add_user_n = input("Please enter a username: ")
 
+        while add_user_n in user_list: 
+            add_user_n = input(f"{add_user_n} has already been taken please enter a different username: ")
 
-print(askjdbas)
+        else:
+            user_list.append(add_user_n)
+            add_user_p = input(f"Please enter the password for the new user {add_user_n}: ")
+            passwords.append(add_user_p)
+    
+
+print("askjdbas")
