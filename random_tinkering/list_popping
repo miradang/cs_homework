@@ -1,0 +1,37 @@
+unconfirmed_users = ['bob', 'george', 'alice']
+confirmed_users = []
+
+active = True
+active1 = True
+while active == True:
+    loop_act = input("would you like to add an unconfirmed guests? y or n: \n")
+    if loop_act == 'n':
+        active = False
+
+    elif loop_act == 'y':
+        uncon_user = input("Please enter the uncofirmed guests name: \n")
+        unconfirmed_users.append(uncon_user)
+    else:
+        loop_act = ("please enter y or n")
+
+loop_act = ''
+
+while active1 == True:
+    print(f"Would you like to confirm all guests?\nThe current guests are: \n")
+    for user in unconfirmed_users:
+        print(f"\t{user.title()}")
+    
+
+    loop_act = input("Confirm the above guests? y or n: ")
+    if loop_act == 'n':
+        active1 = False
+
+    elif loop_act == 'y':
+        while unconfirmed_users:
+            current_user = unconfirmed_users.pop()
+            print(f"Confirming guest: {current_user}")
+            confirmed_users.append(current_user)
+            
+    else:
+        loop_act = input("Confirm the above guests? y or n: ")
+        

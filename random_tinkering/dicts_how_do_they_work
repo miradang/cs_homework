@@ -26,9 +26,24 @@ fav_colors = {
     'bob': 'blue',
     'george': 'yellow',
     'robin': 'red',
+    'conner': 'octarine',
+    'fred': 'blue',
 }
 
 color = fav_colors['bob'].upper()
 
 print(f"Bobs favorite color is {color}")
+
+for names in fav_colors.keys():
+    print(names.title())
+
+for color_1 in fav_colors.values():
+    print(color_1.title())
+
+for names, color in fav_colors.items():
+    print(f"{names.title()} favorite color is {color.title()}")
+
+for color_1 in set(fav_colors.values()):
+    print(color_1.title())
+
 

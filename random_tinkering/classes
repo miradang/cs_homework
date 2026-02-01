@@ -1,0 +1,86 @@
+class Store:
+
+    def __init__(self, store_name, cusine_type):
+        
+        self.store_name = store_name
+        self.cusine_type = cusine_type
+
+    def describe_store(self):
+        print(f"{self.store_name} sells {self.cusine_type} food. ")
+
+    def open_store(self):
+        print(f"The {self.store_name} is now open. ")
+    
+my_store = Store('Wendys', 'burgers')
+
+my_store.describe_store()
+my_store.open_store()
+
+class Car:
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.mileage = 0
+        self.gas_tank = 0 
+
+    def get_long_name(self):
+        long_name = f"{self.year} {self.make} {self.model}"
+        return long_name.title()
+    
+    def fill_gas(self, gallons):
+        self.gas_tank = gallons
+
+    def read_miles(self):
+        print(f"This car has {self.mileage} miles on it. ")
+
+    def update_mileage(self, mileage):
+        if mileage >= self.mileage:
+            self.mileage = mileage
+        else:
+            print("cant rollback mileage cheater")
+
+    def inc_mileage(self, miles):
+        self.mileage += miles
+
+
+new_car = Car('ford', 'bomb', '2077')
+new_car.mileage = 555
+
+
+
+print(new_car.get_long_name())
+new_car.read_miles()
+
+new_car.update_mileage(4000)
+new_car.update_mileage(12)
+
+print(new_car.get_long_name())
+new_car.read_miles()
+
+new_car.inc_mileage(45)
+
+print(new_car.get_long_name())
+new_car.read_miles()
+
+class ElectricCar(Car):
+    
+    def __init__(self, make, model, year):
+        super().__init__(make, model, year)
+        self.battery_size = 40
+
+    def describe_battery(self):
+        print(f"This car has a size {self.battery_size} battery. ")
+    
+    def fill_gas(self, gallons):
+        print(f"This {self.make} does not have a gas tank")
+
+    
+my_tesla = ElectricCar('tesla', 'shitshow', '2085')
+
+print(my_tesla.get_long_name())
+my_tesla.describe_battery()
+my_tesla.fill_gas(79)
+
+

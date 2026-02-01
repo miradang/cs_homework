@@ -1,0 +1,46 @@
+def get_formatted_name(first_name, last_name, middle_name=''):
+    if middle_name:
+        full_name = f"{first_name} {middle_name} {last_name}"
+    else:
+        full_name = f"{first_name} {last_name}"
+    return(full_name.title())
+
+
+def build_user111111(username, password, isadmin=''):
+    user = {'username': username, 'password': password}
+    return user
+
+
+name = get_formatted_name('bob','jacob')
+print(name)
+
+name = get_formatted_name('john', 'lee', middle_name='bob')
+print(name)
+
+def build_person(first_name, last_name):
+    person = {'first': first_name, 'last': last_name}
+    return person
+
+abc = build_person('george','bush')
+print(abc)
+
+def build_user(username, password, **userinfo):
+    user  = {'username': username, 'password': password}
+    return user
+
+users = {
+    'username': 'aaa',
+    'password': 'aaa'
+}
+
+#active = True
+
+#while active = True
+#    if active == True
+#        user_n = input("To login please enter your username: ")
+#            if user_n in users
+#                user_p = input(f"Hello {user_n}. Please enter your password: ")
+
+people = build_user('bob', 'john')
+
+print(people)
