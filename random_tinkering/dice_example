@@ -1,0 +1,59 @@
+import random
+import string
+
+class Die:
+    def __init__ (self,sides):
+        side = sides
+    def roll_dice(self, sides):
+        num = random.randint(1,sides)
+        return num
+    
+my_dice = Die(6)
+my_dice.roll_dice(6)
+
+#print(my_dice.roll_dice(20))
+
+lottery_list = []
+active = 1
+lottery = ''
+
+if active != -1:
+    for i in range(1, 11):
+        lottery_num = str(random.randint(0,11))
+        lottery_list.append(lottery_num)
+    
+    for i in range(1, 6):
+        lowercase_letters = string.ascii_lowercase
+        lottery_let = random.choice(lowercase_letters)
+        lottery_list.append(lottery_let)
+    
+    for i in range(1, 4):
+        lottery += random.choice(lottery_list)
+
+    print(lottery)
+
+    active == -1
+
+lot_guess_f = ''
+count = 0
+lot_g = []
+
+while lot_guess_f != lottery:
+    count = count + 1
+    print(count)
+
+    for i in range(1, 11):
+        lot_n = str(random.randint(0,11))
+        lot_g.append(lottery_num)
+    
+    for i in range(1, 6):
+        lowercase_letters = string.ascii_lowercase
+        lot_abc = random.choice(lowercase_letters)
+        lot_g.append(lottery_let)
+    
+    for i in range(1, 4):
+        lot_guess_f += random.choice(lottery_list)
+    
+print(lot_guess_f)
+
+    

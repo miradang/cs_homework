@@ -1,0 +1,18 @@
+class Employee:
+    def __init__(self,first,last,salary):
+        self.first = first
+        self.last = last
+        self.salary = int(salary)
+
+    def give_raise(self, salary="5000"):
+        self.salary += int(salary)
+    
+
+dave = Employee('dave','jenkins','5')
+
+dave.give_raise()
+
+print(dave.salary)
+
+
+

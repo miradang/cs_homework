@@ -1,0 +1,56 @@
+from pathlib import Path
+
+path1 = Path('pi.txt')
+contents_pi = path1.read_text()
+contents_pi = contents_pi.rstrip()
+#two different ways of stripping whitespace at end of this string
+path2= Path('pi.txt')
+content_pi2 = path2.read_text()
+
+
+print(contents_pi)
+print(content_pi2)
+
+path = Path('pi.txt')
+contents = path.read_text()
+
+lines = contents.splitlines()
+pi_string = ''
+#for line in lines:
+#    print(line)
+
+
+for line in lines:
+    pi_string += line
+
+print(pi_string)
+
+path = Path('test_write.txt')
+path.write_text('I love bagels.\nAnd the sins of our fathers.')
+
+path4 = Path('test_write.txt')
+contents = path.read_text()
+
+print(contents)
+
+print("Divide two numbers")
+
+while True
+    first_num = input("\nFirst number: ")
+    if first_num == 'q':
+        break
+
+    second_num = input("Secound number: ")
+    if second_num == 'q':
+        break
+
+    try:    
+        answer = int(first_num) / int(second_num)
+
+    except ZeroDivisionError:
+        print("Dividing by zero")
+
+    else:
+        print(answer)
+
+
