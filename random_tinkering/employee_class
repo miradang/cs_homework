@@ -6,13 +6,16 @@ class Employee:
 
     def give_raise(self, salary="5000"):
         self.salary += int(salary)
+
+    def employee_full_name(self)
+        fullname = f "{self.first} {selflast}"
+        return fullname.title()
+    
+    
     
 
-dave = Employee('dave','jenkins','5')
+    
 
-dave.give_raise()
-
-print(dave.salary)
 
 
 
