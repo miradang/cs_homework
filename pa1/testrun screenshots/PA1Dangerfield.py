@@ -11,6 +11,9 @@ import math
 
 
 #me being angry i have to put the function at the top of the program
+#probaly should have made this a class
+#delete this before submission
+
 
 def proper_fraction(num, den):
     if den == 0:
@@ -58,11 +61,9 @@ def proper_fraction(num, den):
             return
             #output for postive improper fractions
 
-#quit condition
-quit = 0
 
 #main program loop
-while quit == 0:
+while True:
 
     print("\nThis program will tell you if a fraction is proper or improper.\n\tType q to quit.\n")
     
