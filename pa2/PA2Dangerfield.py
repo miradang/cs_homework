@@ -3,158 +3,144 @@
     Date: 3/3/2026
     
 '''
-
-
-
-
+import math
 
 #since prices are hardcoded just shove them in a dict
-prices = {"skittles": "1.00",
-        "resses": "1.19",
-        "m&m": "1.50",
-        "chex": "0.99",
-        "honey": "1.99",
+prices = {"1": "100",
+        "2": "119",
+        "3": "150",
+        "4": "99",
+        "5": "199",
         }
-#quit condition
-#quit = True
 
-for VendingMachine:
-    def __init__(self):
-        self.running = True
-        #dict for menu selection
-        self.options = {
-            '1': (self.main_menu),
-            '2': (self.insert_coinage),
-            '3': (self.purchase),
-        }
-    
+#theres gotta be a better way to do this
+#maybe nest a dict, look into that
+
+item_name = {"1": "Skittles",
+             "2": "Resses",
+             "3": "M&M",
+             "4": "Chex",
+             "5": "Honey",
+             }
+
+
     #stores coinage why the heck did i write this?
-    def coinage_store(coinage):
-        coinage = float(coinage)
-        total = int()
-        money = coinage
-        a = coinage_convert(money)
-        return a
+def coinage_store(coinage):
+    coinage = float(coinage)
+    total = int()
+    money = coinage
+    a = coinage_convert(money)
+    return a
 
-    #converts from float to int
-    def coinage_convert(money):
-        intmoney = money
-        #money = intmoney
-        intmoney = int(round(intmoney, 5) * 100)
-        return intmoney
 
-    #insert coins menu
-    def insert_coinage(self):
-        print("Please enter:\n",
-        "1.00 for $1 bill\n",
-        "5.00 for $5 bills\n",
-        ".01 for pennies\n",
-        ".05 for nickels\n",
-        ".10 for dimes\n",
-        ".25 for quarters\n",
-        "0 to cancel\n"
+#converts from float to int
+def coinage_convert(money):
+    intmoney = money
+    #money = intmoney
+    intmoney = int(round(intmoney, 5) * 100)
+    return intmoney
+
+
+#insert coins menu
+def insert_coinage():
+    quit = True
+    global total
+    global quit_to_main
+    print("Please enter:",
+        "1.00 for $1 bill",
+        "5.00 for $5 bills",
+        ".01 for pennies",
+        ".05 for nickels",
+        ".10 for dimes",
+        ".25 for quarters",
+        "0 to cancel"
         )
-        while quit_1 == True:
-            coinage = float(input("Enter in your money: "))
-            coinage_quit = round(coinage, 1)
-            if coinage_quit == 0:
-                quit_1 = False
-                #doesnt work yet figure it out 
-
-            else:
-                total = 0
-                b = coinage_store(coinage)
-                total = total + b
-                print(f"Your current total is {total}.\nEnter 0 to stop deposit")
-
-    def purchase_menu
-
-    def main_menu(self):
-        print("*********\n"
-        "Welcome to this Vending Machine!\n",
-        "*********\n\n",
-        "If you would like to make a selection,\n",
-        "please insert the appropriate currency into the machine.\n",
-        )
-
-    def main_loop(self):
-        while self.running:
-            while choice == 0
-                self.main_menu()
-                choice = choice + 1
-            self.insert_coinage()
-
+    while quit == True:
+        coinage = float(input("Enter in your money: "))
+        coinage_quit = round(coinage, 1)
+        if coinage_quit == 0:
+            quit = False
+            quit_to_main = True
             
 
- 
-#main loop
-#throw this in a class dude
-#while quit == True:
-#    print("*********\n"
-#        "Welcome to this Vending Machine!\n"
-#        "*********\n\n"
-#        "If you would like to make a selection,\n"
-#        "please insert the appropriate currency into the machine.\n" \
-#        "Please enter:\n"
-#        "1.00 for $1 bill\n"
-#        "5.00 for $5 bills\n"
-#        ".01 for pennies\n"
-#        ".05 for nickels\n"
-#        ".10 for dimes\n"
-#        ".25 for quarters\n"
-#        "0 to cancel\n")
-    
-    #coin input loop
-#    coinage = ""
-#    quit_1 = True
-
-#    while quit_1 == True:
-#        coinage = float(input("Enter in your money: "))
-#        coinage_quit = round(coinage, 1)
-#        if coinage_quit == 0:
-#            quit_1 = False
-            #doesnt work yet figure it out 
-
-#        else:
-#            total = 0
-#            b = coinage_store(coinage)
-#            total = total + b
-#            print(f"Your current total is {total}.\nEnter 0 to stop deposit")
+        else:
+            b = coinage_store(coinage)
+            total = total + b
+            print(f"Your current total is {display_total}.\nEnter 0 to stop deposit")
+            return total
+        
             
+def purchase(item):
+    item_price = prices.get(item)
+    total = total - item_price
+    return total
 
 
-#print(f"********* Total Money in machine is: {total} ********"
-          "\tAt any point if you wish to cancel operation or go back to last menu, please enter 0.",
-           "\tThank you!:",
-           "If you would like to purchase:",
-           "Product A type '1', (Price = $1.00)",
-           "Product B type '2', (Price = $1.25)",
-           "Product C type '3', (Price = $1.50)",
-           "Product D type '4', (Price = $1.75)",
-           "Product E type '5'. (Price = $2.00)",
-           "Your entry is: ")
+def purchase_menu():
+    global quit_to_main
+    print(f"******** Total Money in machine is: {display_total} ********\n",
+        "At any point if you wish to cancel operation or go back to last menu, please enter 0.\n",
+        "Thank you!:",
+        "If you would like to purchase:\n",
+        "Skittles type '1', (Price = $1.00)\n",
+        "Resse's type '2', (Price = $1.19)\n",
+        "M&M's type '3', (Price = $1.50)\n",
+        "Chex Mix type '4', (Price = $0.99)\n",
+        "Honey Bun type '5'. (Price = $1.99)\n")
+    item_entry = input("Your selection is: ")
+    if item_entry == 0:
+        quit_to_main = True 
+    else:
+        purchase(item_entry)
+        print(total)
 
 
+def main_menu():
+    print("*********\n"
+    "Welcome to this Vending Machine!\n",
+    "*********\n\n",
+    "If you would like to make a selection,\n",
+    "please insert the appropriate currency into the machine.\n",
+    )
 
-
- 
-
-
-
-
-    #write coinage to dollars quarters nickets dimes pennies
-
-
-
-
-
+def total_update(number):
+    if number == 0:
+        return "$0.0"
     
-#def float_to_money(money):
+    #calc the power of 10 needed
+    #gets exponent of first digita
+    exponent = math.floor(math.log10(abs(number)))
+    #factor to is 10 to the exponent
+    factor = 10 ** exponent
+    u_d_total = number // factor
+    #returns with only two decimals trailing
+    return (u_d_total:.2f)
 
-#5.36 
 
 
+#global vars
+
+total = 0
+display_total = 0
+quit_to_main = False
+
+#main programm loop
+mainloop = True
+while mainloop == True:
+    main_menu()
+    while quit_to_main == False:
+        insert_coinage()
+        print(total)
+        purchase_menu()
 
 
+'''
+to do:
+fix display total to show decimal points
+complete purchase
+
+write change function
+
+'''
 
 
