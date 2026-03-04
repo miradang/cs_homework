@@ -5,14 +5,6 @@
 '''
 import math
 
-#since prices are hardcoded just shove them in a dict
-prices = {"1": "100",
-        "2": "119",
-        "3": "150",
-        "4": "99",
-        "5": "199",
-        }
-
 #theres gotta be a better way to do this
 #maybe nest a dict, look into that
 
@@ -23,36 +15,47 @@ item_name = {"1": "Skittles",
              "5": "Honey",
              }
 
+#since prices are hardcoded just shove them in a dict
+prices = {"1": "100",
+        "2": "119",
+        "3": "150",
+        "4": "99",
+        "5": "199",
+        }
+
+display_prices = {"1": "$1.00",
+                  "2": "$1.19",
+                  "3": "$1.50",
+                  "4": "$0.99",
+                  "5": "$1.99",
+}
+
 
     #stores coinage why the heck did i write this?
 def coinage_store(coinage):
     coinage = float(coinage)
-    total = int()
-    money = coinage
-    a = coinage_convert(money)
+    a = coinage_convert(coinage)
     return a
 
 
 #converts from float to int
 def coinage_convert(money):
-    intmoney = money
-    #money = intmoney
-    intmoney = int(round(intmoney, 5) * 100)
+    intmoney = int(round(money, 5) * 100)
     return intmoney
 
 
 #insert coins menu
 def insert_coinage():
-    quit = True
+    global display_total
     global total
-    global quit_to_main
+    quit = True
     print("Please enter:",
-        "1.00 for $1 bill",
-        "5.00 for $5 bills",
-        ".01 for pennies",
-        ".05 for nickels",
-        ".10 for dimes",
-        ".25 for quarters",
+        "1.00 for $1 bill\n",
+        "5.00 for $5 bills\n",
+        ".01 for pennies\n",
+        ".05 for nickels\n",
+        ".10 for dimes\n",
+        ".25 for quarters\n",
         "0 to cancel"
         )
     while quit == True:
@@ -60,24 +63,32 @@ def insert_coinage():
         coinage_quit = round(coinage, 1)
         if coinage_quit == 0:
             quit = False
-            quit_to_main = True
-            
+            break
 
         else:
-            b = coinage_store(coinage)
-            total = total + b
+            coinage_1 = coinage + total
+            print(coinage_1)
+            total_update(coinage_1)
+            print(coinage)
+            print(total)
             print(f"Your current total is {display_total}.\nEnter 0 to stop deposit")
-            return total
+         
         
             
 def purchase(item):
-    item_price = prices.get(item)
-    total = total - item_price
-    return total
+    global total
+    #p_total = total
+    item_price = (prices.get(item))
+    disp_price = display_prices.get(item)
+    print(f"**** This item costs {disp_price} ****")
+    p_total = p_total - item_price
+    total_update(p_total)
+    
 
 
 def purchase_menu():
     global quit_to_main
+    total_update
     print(f"******** Total Money in machine is: {display_total} ********\n",
         "At any point if you wish to cancel operation or go back to last menu, please enter 0.\n",
         "Thank you!:",
@@ -87,12 +98,14 @@ def purchase_menu():
         "M&M's type '3', (Price = $1.50)\n",
         "Chex Mix type '4', (Price = $0.99)\n",
         "Honey Bun type '5'. (Price = $1.99)\n")
-    item_entry = input("Your selection is: ")
-    if item_entry == 0:
-        quit_to_main = True 
-    else:
+    item_entry = int(input("Your selection is: "))
+    while item_entry != 0:
         purchase(item_entry)
-        print(total)
+        print(f"\n**** You have {display_total} left in the machine ****")
+    else:
+        quit_to_main = True
+        
+        
 
 
 def main_menu():
@@ -103,18 +116,22 @@ def main_menu():
     "please insert the appropriate currency into the machine.\n",
     )
 
-def total_update(number):
-    if number == 0:
-        return "$0.0"
-    
+def total_update(u_total):
+    global total
+    global display_total
+    u_total = total + u_total
+
+    #if u_total == 0:
+    #    return "0"
     #calc the power of 10 needed
     #gets exponent of first digita
-    exponent = math.floor(math.log10(abs(number)))
+    #exponent = math.floor(math.log10(abs(u_total)))
     #factor to is 10 to the exponent
-    factor = 10 ** exponent
-    u_d_total = number // factor
+    #factor = 10 ** exponent
+    #u_d_total = round((u_total // factor), 2)
+   
     #returns with only two decimals trailing
-    return (u_d_total:.2f)
+    display_total = str("$" + (str({u_total})))
 
 
 
@@ -128,8 +145,10 @@ quit_to_main = False
 mainloop = True
 while mainloop == True:
     main_menu()
+    
     while quit_to_main == False:
         insert_coinage()
+        
         print(total)
         purchase_menu()
 
@@ -137,6 +156,8 @@ while mainloop == True:
 '''
 to do:
 fix display total to show decimal points
+make a display total for amount left in machine
+fix the decmials on display totals and item prices
 complete purchase
 
 write change function
