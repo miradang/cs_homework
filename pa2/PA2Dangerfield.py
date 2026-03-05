@@ -5,9 +5,7 @@
 '''
 import math
 
-#theres gotta be a better way to do this
-#maybe nest a dict, look into that
-
+#just a nested dict for products prices and such
 products = {
     '1': {
         'name': 'Skittles',
@@ -60,8 +58,10 @@ def coinage_convert(money):
 def insert_coinage():
     global display_total
     global int_total
+    #grabs global totals
 
     quit = True
+    #why is this here? does this need to be a loop?
     print("Please enter:",
         "1.00 for $1 bill\n",
         "5.00 for $5 bills\n",
@@ -85,18 +85,26 @@ def insert_coinage():
         else:
             total_add(int_coinage, float_coinage)
             print(f"Your current total is {float_total}.\nEnter 0 to stop deposit")
+            #calls the function that adds to the total
+            #legacy from when i had a total_add and total_sell
          
         
             
 def purchase(item):
+    #purchase function
     global int_total
     global float_total
+    #grabs global totals
   
     item_price = products.get(item, {}).get("int_price")
     disp_price = products.get(item, {}).get("float_price")
+    #gets prices for selected item
 
     int_total = int_total - item_price
     float_total = float_total - disp_price
+    #subtracts prices from global prices
+    #need to check float to make sure it doesnt get to in accurate
+    #might need to actaully figure out how to convert int to float well
     print(f"**** This item costs {disp_price} ****")
 
  def change():
@@ -128,7 +136,10 @@ def purchase(item):
 
 
 def purchase_menu():
+    #purchase menu
     global quit_to_main
+    #need to write better quit conditions this is wack
+
     print(f"******** int_total Money in machine is: {float_total} ********\n",
         "At any point if you wish to cancel operation or go back to last menu, please enter 0.\n",
         "Thank you!:",
@@ -139,6 +150,7 @@ def purchase_menu():
         "Chex Mix type '4', (Price = $0.99)\n",
         "Honey Bun type '5'. (Price = $1.99)\n")
     item_entry = int(input("Your selection is: "))
+    #gets input
     while item_entry != 0:
         if item_entry is range(1,6):
             purchase(item_entry)
@@ -146,20 +158,24 @@ def purchase_menu():
             item_entry = int(input("Your selection is: "))
         else:
             quit_to_main = True
+            #wacky quit condition i need to fix
         
     else:
         quit_to_main = True
         
         
 def main_menu():
+    #main menu for vending machines
     print("*********\n"
     "Welcome to this Vending Machine!\n",
     "*********\n\n",
     "If you would like to make a selection,\n",
     "please insert the appropriate currency into the machine.\n",
     )
+    #with the current state of the loop this can repeat infinitly
 
 def total_add(int_coinage, float_coinage):
+    
     global int_total
     global float_total
 
@@ -171,6 +187,7 @@ def total_add(int_coinage, float_coinage):
     
 
 def total_sub(int_coinage, float_coinage):
+    #do i still need this, i dont think it gets called anywhere
     global int_total
     global float_total
 
@@ -183,12 +200,15 @@ def total_sub(int_coinage, float_coinage):
 
 #####global vars
 
-#int_total in int
+
 int_total = 0
-#int_total as string
+#total in int
 float_total = 0
+#total in float
 display_total = ""
+#i dont think this is used
 quit_to_main = False
+#need to fix all the quit conditions to be standardized
 #####End of global vars
 
 ######main programm loop#########
@@ -215,6 +235,8 @@ write change function x
 write options def for loop
 
 fix loop so you can bounce between main menu, insert, purchase, quit
+
+will need a quit def
 
 '''
 
