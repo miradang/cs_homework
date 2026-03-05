@@ -8,34 +8,46 @@ import math
 #theres gotta be a better way to do this
 #maybe nest a dict, look into that
 
-item_name = {"1": "Skittles",
-             "2": "Resses",
-             "3": "M&M",
-             "4": "Chex",
-             "5": "Honey",
-             }
+products = {
+    '1': {
+        'name': 'Skittles',
+        'int_price': 100,
+        'float_price': 1.00,
+    },
 
-#since prices are hardcoded just shove them in a dict
-prices = {"1": "100",
-        "2": "119",
-        "3": "150",
-        "4": "99",
-        "5": "199",
-        }
+    '2': {
+        'name': 'Resses',
+        'int_price': 119,
+        'float_price': 1.19,
+    },
 
-display_prices = {"1": "$1.00",
-                  "2": "$1.19",
-                  "3": "$1.50",
-                  "4": "$0.99",
-                  "5": "$1.99",
+    '3': {
+        'name': 'M&M',
+        'int_price': 150,
+        'float_price': 1.50,
+    },
+
+    '4': {
+        'name': 'Chex',
+        'int_price': 99,
+        'float_price': 0.99,
+    },
+    '5': {
+        'name': 'Honey Bun',
+        'int_price': 199,
+        'float_price': 1.99,
+    },
 }
 
 
+
     #stores coinage why the heck did i write this?
-def coinage_store(coinage):
-    coinage = float(coinage)
-    a = coinage_convert(coinage)
-    return a
+#def coinage_store(coinage):
+#    coinage = float(coinage)
+
+    #former coinage convert function
+#    a = int(round(coinage, 2) * 100)
+#    return a
 
 
 #converts from float to int
@@ -47,7 +59,8 @@ def coinage_convert(money):
 #insert coins menu
 def insert_coinage():
     global display_total
-    global total
+    global int_total
+
     quit = True
     print("Please enter:",
         "1.00 for $1 bill\n",
@@ -59,37 +72,64 @@ def insert_coinage():
         "0 to cancel"
         )
     while quit == True:
-        coinage = float(input("Enter in your money: "))
-        coinage_quit = round(coinage, 1)
+        float_coinage = float(input("Enter in your money: "))
+        #rounds coinage to 1 digit to see if its zero for quit condition
+        #check to see if i need to return a quit value
+        coinage_quit = round(float_coinage, 1)
+        int_coinage = coinage_convert(float_coinage)
+
         if coinage_quit == 0:
             quit = False
-            break
+            #quit condition
 
         else:
-            coinage_1 = coinage + total
-            print(coinage_1)
-            total_update(coinage_1)
-            print(coinage)
-            print(total)
-            print(f"Your current total is {display_total}.\nEnter 0 to stop deposit")
+            total_add(int_coinage, float_coinage)
+            print(f"Your current total is {float_total}.\nEnter 0 to stop deposit")
          
         
             
 def purchase(item):
-    global total
-    #p_total = total
-    item_price = (prices.get(item))
-    disp_price = display_prices.get(item)
+    global int_total
+    global float_total
+  
+    item_price = products.get(item, {}).get("int_price")
+    disp_price = products.get(item, {}).get("float_price")
+
+    int_total = int_total - item_price
+    float_total = float_total - disp_price
     print(f"**** This item costs {disp_price} ****")
-    p_total = p_total - item_price
-    total_update(p_total)
-    
+
+ def change():
+    global int_total
+    working_total = int_total
+
+    #167 as example
+    cents = working_total
+    quarters = cents // 25
+    #6 quarters
+    cents %= 25
+    #remainder 17
+    dimes =  cents // 10
+    #1 dimes
+    cents %= 10
+    #remainder 7
+    nickels = cents // 5
+    #1 nickel
+    cents %= 5
+    #remainder 2
+
+    print(f"You have ${float_total} left in the machine ***",
+    "Your change is:",
+    "{quarters} Quarters",
+    "{dimes} Dimes",
+    "{nickles} Nickels",
+    "{pennies} Pennies",
+    )   
 
 
 def purchase_menu():
     global quit_to_main
-    total_update
-    print(f"******** Total Money in machine is: {display_total} ********\n",
+    print(f"******** int_total Money in machine is: {float_total} ********\n",
         "At any point if you wish to cancel operation or go back to last menu, please enter 0.\n",
         "Thank you!:",
         "If you would like to purchase:\n",
@@ -100,14 +140,17 @@ def purchase_menu():
         "Honey Bun type '5'. (Price = $1.99)\n")
     item_entry = int(input("Your selection is: "))
     while item_entry != 0:
-        purchase(item_entry)
-        print(f"\n**** You have {display_total} left in the machine ****")
+        if item_entry is range(1,6):
+            purchase(item_entry)
+            print(f"\n**** You have {float_total} left in the machine ****")
+            item_entry = int(input("Your selection is: "))
+        else:
+            quit_to_main = True
+        
     else:
         quit_to_main = True
         
         
-
-
 def main_menu():
     print("*********\n"
     "Welcome to this Vending Machine!\n",
@@ -116,32 +159,39 @@ def main_menu():
     "please insert the appropriate currency into the machine.\n",
     )
 
-def total_update(u_total):
-    global total
-    global display_total
-    u_total = total + u_total
+def total_add(int_coinage, float_coinage):
+    global int_total
+    global float_total
 
-    #if u_total == 0:
-    #    return "0"
-    #calc the power of 10 needed
-    #gets exponent of first digita
-    #exponent = math.floor(math.log10(abs(u_total)))
-    #factor to is 10 to the exponent
-    #factor = 10 ** exponent
-    #u_d_total = round((u_total // factor), 2)
-   
-    #returns with only two decimals trailing
-    display_total = str("$" + (str({u_total})))
+    int_total = int_coinage + int_total
+    float_total = float_coinage + float_total
 
+    print(f"totaladd {int_total}")
+    #display_total = f"${int_total:.2f}"
+    
 
+def total_sub(int_coinage, float_coinage):
+    global int_total
+    global float_total
 
-#global vars
+    int_total = int_total - int_coinage
+    float_total = float_total - float_coinage
 
-total = 0
-display_total = 0
+    print(f"totalsub {int_total}")
+    #display_total = f"${int_total:.2f}"
+    
+
+#####global vars
+
+#int_total in int
+int_total = 0
+#int_total as string
+float_total = 0
+display_total = ""
 quit_to_main = False
+#####End of global vars
 
-#main programm loop
+######main programm loop#########
 mainloop = True
 while mainloop == True:
     main_menu()
@@ -149,18 +199,22 @@ while mainloop == True:
     while quit_to_main == False:
         insert_coinage()
         
-        print(total)
+        print(int_total)
         purchase_menu()
 
 
 '''
 to do:
-fix display total to show decimal points
-make a display total for amount left in machine
-fix the decmials on display totals and item prices
-complete purchase
+fix display int_total to show decimal points x
+make a display int_total for amount left in machine x
+fix the decmials on display totals and item prices x
+complete purchase x
 
-write change function
+write change function x
+
+write options def for loop
+
+fix loop so you can bounce between main menu, insert, purchase, quit
 
 '''
 

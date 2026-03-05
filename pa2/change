@@ -1,0 +1,24 @@
+while True:
+    total = int(input("input int cash here: "))
+    x = 0
+    q_amount, q_remainder, d_amount, d_remainder, n_amount, n_remainder, p_amount = 0, 0, 0, 0, 0, 0, 0
+    while x != 1:
+        cents = total
+
+        quarters = cents // 25
+        cents %= 25
+
+        dimes =  cents // 10
+        cents %= 10
+
+        nickels = cents // 5
+        cents %= 5
+
+        print(quarters, dimes, nickels, cents)
+        x = 1
+
+
+#total /
+#d_amount =
+#n_amount = 
+#p_amount = 
