@@ -1,0 +1,7 @@
+user_num = int(input())
+y = 22
+
+while y > user_num:
+    print("*")
+    y = y - 9
+

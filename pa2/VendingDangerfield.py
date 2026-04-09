@@ -39,14 +39,6 @@ products = {
 
 
 
-    #stores coinage why the heck did i write this?
-#def coinage_store(coinage):
-#    coinage = float(coinage)
-
-    #former coinage convert function
-#    a = int(round(coinage, 2) * 100)
-#    return a
-
 
 #converts from float to int
 def coinage_convert(money):
@@ -203,7 +195,7 @@ def total_add(int_coinage, float_coinage):
     int_total = int_coinage + int_total
     float_total = float_coinage + float_total
 
-    print(f"totaladd {int_total}")
+    #print(f"totaladd {int_total}")
     #display_total = f"${int_total:.2f}"
     
 
@@ -280,11 +272,11 @@ complete purchase x
 
 write change function x
 
-write options def for loop
+write options def for loop x
 
-fix loop so you can bounce between main menu, insert, purchase, quit
+fix loop so you can bounce between main menu, insert, purchase, quit x
 
-will need a quit def
+will need a quit def x
 
 '''
 

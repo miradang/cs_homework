@@ -1,0 +1,49 @@
+ Airline Ticket Reservation
+Topics:
+        Functions, Decision, Repetition, List
+Problem Description:
+
+A small airline has just purchased a computer for its new automated reservations system. You've been asked to develop the system. You're to write an application to assign seats on each flight of the airline's only plane (capacity: 10 seats).
+
+Your application should display the following alternatives: Please type 1 for First Class and Please type 2 for Economy. If a user types 1, your application should assign a seat in the first- class section (seats 1-5). If a user types 2, your application should assign a seat in the economy section (seats 6-10).  Your application should then display a boarding pass indicating the person's seat number and whether it's in the first-class or economy section of the plane. Use a list of boolean data type to represent the seating chart of the plane. Initialize all the elements of the list to False to indicate that all the seats are empty. As each seat is assigned, set the corresponding element to True to indicate that the seat is no longer available. Your application should never assign a seat that has already been assigned. When the economy section is full, your application should ask the person if it's acceptable to be placed in the first-class section (and vice versa). If yes, make the appropriate seat assignment. If no, display the message "Next flight leaves in 3 hours."
+Programming Requirements:
+Design an application named AirLineTicketLastName.py to help clients to book airline ticket.  Your program should include the following functions:
+
+    hasMoreEconomySeat(seats:list)->bool,
+
+      If not all economy seats(6th - 10th elements) were assigned, return True, otherwise, return False.
+
+    hasMoreFirstClassSeat(seats: list)->bool
+    If not all first-class section (1st - 5th elements) seats were assigned, return True, otherwise, return False.
+    assignEconomySeat(seats: list)->int.
+
+     Assign the first available economy seat to the client and return the seat number, which should be a number in the range of [6,10]. Return -1 if no economy seat is available.
+
+    assignFirstClassSeat(seats: list)->int.
+
+      Assign the first available first-class seat to the client, and return the seat number, it should be a number in the range of [1,5]. Return -1 if no first class seat is available.
+
+    printBoardingPass(assignmentSeatNumber: int)
+    It prints boarding pass as follows:
+
+Seat Number: 7 Economy section
+or
+Seat Number: 3 First-class section
+
+ 
+
+Note: A personal/assignment information block is required at the beginning of the source code. The following information should be included: your full name, assignment #, file name(s), due date.   
+Example:
+'''  Assignment: Airline Ticket
+   Name: Paul Davis 
+
+   File Created on March 10, 2024   
+'''
+
+Sample output:
+
+Submission Requirements:
+
+    Source code: the python file named as AirlineTicketYourlastname.py.
+    Project report: Include pseudocode, at least 5 screenshots of test runs in one PDF ﬁle and name it BookingReportYourlastname.pdf. 
+
