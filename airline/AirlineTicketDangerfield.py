@@ -1,8 +1,13 @@
-
+''' Name: Miranda Dangerfield
+    Assinment: PA3
+    Date: 4/9/2026
+    
+'''
+#list for current reserved seats True if reserved
 
 reserved_seats = [False, False, False, False, False, False, False, False, False, False]
 
-def Main_display():
+def mainDisplay():
     #global seattype
     #print("Please type 1 for First Class and Please type 2 for Economy")
     seattype = int(input("Please type 1 for First Class and Please type 2 for Economy")):
@@ -28,12 +33,12 @@ def Main_display():
 
 def hasMoreEconomySeat(seats:list)->bool:
     wanted_seat = seats - 1
-    if (wanted_seat) in range(5,11) in reserved_seats is false:
+    if (wanted_seat) in range(5,11) in reserved_seats is False:
         return True
 
 def hasMoreFirstClassSeat(seats: list)->bool:
     wanted_seat = seats - 1
-    if wanted_seat in range(0,6) in reserved_seats is false:
+    if wanted_seat in range(0,6) in reserved_seats is False:
         return True
 
 def assignEconomySeat(seats: list)->int:
@@ -69,9 +74,20 @@ def finalBoardingList():
 
             
     
+#main loop
+quit = 0
+
+while quit == 0:
+    mainDisplay()
 
 
+'''to do list
+move main program lofic out of maindisplay for readability of the main loop
+finish main loop logic so you can start testing
+finish print boaring pass function
+figure out how adding list into functions work
+    (does it work like above or do you need different argument?)
+    
 
 
-
-
+'''
