@@ -61,10 +61,20 @@ def mainDisplay():
             else:
                 if hasMoreEconomySeat(reserved_seats):
                     response = input("""First Class is full. Is economy seat OK?\n Type "Y" for yes, "N" for no: """).strip().lower()
-                    #data validation
+                #data validation
+                while response not in ['y', 'n']:
+                    response = input("""Invalid Entry. Please enter "Y" or "N": """)
+
                     if response == 'y':
                         seat_num = assignEconomySeat(reserved_seats)
                         printBoardingPass(seat_num)
+                        
+
+
+                    elif response == 'n':
+                        print("Closing boarding")
+                        
+
                     else:
                         print("Next flight leaves in 3 hours.\n")
                 else:
@@ -77,9 +87,17 @@ def mainDisplay():
             else:
                 if hasMoreFirstClassSeat(reserved_seats):
                     response = input("""Economy is full. Is First-class seat OK?\n Type "Y" for yes, "N"for no: """).strip().lower()
+                    while response not in ['y', 'n']:
+                        response = input("""Please enter "Y" or "N": """)
+
                     if response == 'y':
                         seat_num = assignFirstClassSeat(reserved_seats)
                         printBoardingPass(seat_num)
+                        
+
+                    elif response == 'n':
+                        print("Closing boarding")
+                        
                     else:
                         print("Next flight leaves in 3 hours.\n")
                 else:
